@@ -1,0 +1,81 @@
+---
+import './bento.css';
+
+const stats = [
+  { label: 'Proyectos', num: '30+' },
+  { label: 'Experiencia', num: '5+', sub: 'años en el sector' },
+];
+
+const skills = [
+  { label: 'Figma',          active: true  },
+  { label: 'Design Systems', active: true  },
+  { label: 'Prototyping',    active: false },
+  { label: 'Strategy',       active: true  },
+  { label: 'Research',       active: false },
+  { label: 'Tokens',         active: false },
+];
+---
+<section class="bento" id="about">
+  <div class="bento__grid">
+
+    <!-- CARD HERO -->
+    <article class="card card--hero" aria-label="Presentación">
+      <div class="card__hero-tag">UI/UX Designer · 5+ años</div>
+      <h1 class="card__hero-title">
+        Diseño<br/><em>audaz,</em><br/>resultados.
+      </h1>
+      <div class="card__hero-bottom">
+        <p class="card__hero-desc">
+          Productos digitales que equilibran belleza y conversión.
+        </p>
+        <a href="#work" class="card__hero-btn">Ver trabajo ↗</a>
+      </div>
+    </article>
+
+    <!-- CARD STATS -->
+    <article class="card card--stats" aria-label="Estadísticas">
+      {stats.map((s, i) => (
+        <>
+          {i > 0 && <div class="card__stats-divider" />}
+          <div>
+            <div class="card__stats-label">{s.label}</div>
+            <div class="card__stats-num">{s.num}</div>
+            {s.sub && <div class="card__stats-sub">{s.sub}</div>}
+          </div>
+        </>
+      ))}
+    </article>
+
+    <!-- CARD SKILLS -->
+    <article class="card card--skills" aria-label="Habilidades">
+      <h2 class="card__skills-title">Stack &<br/>habilidades</h2>
+      <div class="card__pills">
+        {skills.map(s => (
+          <span class:list={['pill', { 'pill--active': s.active }]}>
+            {s.label}
+          </span>
+        ))}
+      </div>
+    </article>
+
+    <!-- CARD AVAILABILITY -->
+    <article class="card card--avail" aria-label="Disponibilidad">
+      <div class="card__avail-dot" aria-hidden="true"></div>
+      <div>
+        <h2 class="card__avail-title">Disponible<br/>para proyectos</h2>
+        <p class="card__avail-sub">Freelance & tiempo completo</p>
+      </div>
+      <a href="#contact" class="card__avail-cta">Hablemos</a>
+    </article>
+
+    <!-- CARD CTA -->
+    <article class="card card--cta" aria-label="Contacto">
+      <div>
+        <p class="card__cta-label">¿Tienes una idea?</p>
+        <p class="card__cta-text">Hagámosla <em>real.</em></p>
+      </div>
+      <a href="#contact" class="card__cta-arrow" aria-label="Ir a contacto">↗</a>
+    </article>
+
+  </div>
+</section>

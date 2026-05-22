@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #f5f0e8;
+  --color-surface: rgba(255, 255, 255, 0.55);
+  --color-text: #1a1a1a;
+  --color-muted: #888888;
+  --color-border: rgba(26, 26, 26, 0.09);
+  --color-yellow: #ffb547;
+  --color-red: #ff6b6b;
+  --color-navy: #2d2d5e;
+  --color-green-bg: #e8f5e9;
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --radius: 18px;
+  --gap: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Separador de sección reutilizable */
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::after {
+  content: "";
+  flex: 1;
+  height: 0.5px;
+  background: rgba(26, 26, 26, 0.12);
+}

@@ -1,0 +1,66 @@
+---
+import './navbar.css';
+
+const links = [
+  { label: 'Work',    href: '#work'    },
+  { label: 'About',   href: '#about'   },
+  { label: 'Process', href: '#process' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+<header class="navbar">
+
+  <div class="navbar__left">
+    <div class="navbar__logo-box">NA</div>
+    <div class="navbar__logo-meta">
+      <span class="navbar__logo-name">Nombre Apellido</span>
+      <span class="navbar__logo-role">UI/UX Designer</span>
+    </div>
+  </div>
+
+  <nav class="navbar__center" aria-label="Navegación principal">
+    {links.map((l, i) => (
+      <a
+        href={l.href}
+        class:list={['navbar__link', { 'navbar__link--active': i === 0 }]}
+      >
+        {l.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="navbar__right">
+    <div class="navbar__badge">
+      <span class="navbar__badge-dot" aria-hidden="true"></span>
+      Disponible
+    </div>
+    <a href="#contact" class="navbar__cta">Hablemos →</a>
+  </div>
+
+  <button class="navbar__burger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span>
+    <span></span>
+  </button>
+
+</header>
+
+<script>
+  const burger = document.querySelector('.navbar__burger') as HTMLButtonElement;
+  const center = document.querySelector('.navbar__center') as HTMLElement;
+  const links  = document.querySelectorAll('.navbar__link');
+
+  burger?.addEventListener('click', () => {
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!isOpen));
+    center.classList.toggle('navbar__center--open');
+  });
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      links.forEach(l => l.classList.remove('navbar__link--active'));
+      link.classList.add('navbar__link--active');
+      center.classList.remove('navbar__center--open');
+      burger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

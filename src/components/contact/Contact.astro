@@ -1,0 +1,45 @@
+---
+import './contact.css';
+
+const socials = [
+  { label: 'Red profesional', name: 'LinkedIn',   href: 'https://linkedin.com/in/tu-usuario', bg: 'dark'  },
+  { label: 'Portfolio visual', name: 'Dribbble',  href: 'https://dribbble.com/tu-usuario',    bg: 'dark'  },
+  { label: 'Código & repos',   name: 'GitHub',    href: 'https://github.com/tu-usuario',      bg: 'navy'  },
+  { label: 'Comunidad',        name: 'Twitter / X', href: 'https://x.com/tu-usuario',         bg: 'red'   },
+];
+---
+<section class="contact" id="contact">
+  <p class="section-label">Contacto</p>
+  <div class="contact__grid">
+
+    <!-- Email CTA -->
+    <article class="contact__main">
+      <div>
+        <p class="contact__eyebrow">Hablemos</p>
+        <h2 class="contact__title">
+          ¿Tienes un<br/>proyecto <em>en mente?</em>
+        </h2>
+      </div>
+      <a href="mailto:hola@tudominio.com" class="contact__email">
+        hola@tudominio.com ↗
+      </a>
+    </article>
+
+    <!-- Social links 2x2 -->
+    <div class="contact__socials">
+      {socials.map(s => (
+        
+         <a href={s.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class:list={['contact__social', `contact__social--${s.bg}`]}
+        >
+          <p class="contact__social-label">{s.label}</p>
+          <p class="contact__social-name">{s.name}</p>
+          <span class="contact__social-arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>

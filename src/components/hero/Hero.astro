@@ -1,0 +1,102 @@
+---
+import './hero.css';
+---
+<section class="hero" id="hero">
+  <p class="section-label">Inicio</p>
+  <div class="hero__grid">
+
+    <!-- Card principal con 3D tilt -->
+    <article class="hero__card hero__card--main" id="hero-tilt">
+      <div>
+        <div class="hero__tag">UI/UX Designer · 5+ años de experiencia</div>
+        <h1 class="hero__title">
+          Diseño<br/><em>audaz,</em><br/>resultados.
+        </h1>
+      </div>
+      <div class="hero__bottom">
+        <p class="hero__desc">
+          Productos digitales que equilibran belleza funcional y conversión real.
+        </p>
+        <a href="#work" class="hero__btn">Ver trabajo ↗</a>
+      </div>
+    </article>
+
+    <!-- Stats card rediseñada con 3D tilt -->
+    <article class="hero__card hero__card--stats" id="stats-tilt">
+      <div class="hero__stats-top">
+        <p class="hero__stats-eyebrow">Proyectos entregados</p>
+        <p class="hero__stats-big"><span>+</span>30</p>
+        <p class="hero__stats-desc">en 5+ años de carrera</p>
+      </div>
+      <div class="hero__stats-bottom">
+        <div class="hero__stats-row">
+          <div class="hero__stats-row-header">
+            <span class="hero__stats-row-label">Empresas</span>
+            <span class="hero__stats-row-val"><em>8</em></span>
+          </div>
+          <div class="hero__stats-bar">
+            <div class="hero__stats-bar-fill" style="--w: 75%"></div>
+          </div>
+        </div>
+        <div class="hero__stats-row">
+          <div class="hero__stats-row-header">
+            <span class="hero__stats-row-label">Satisfacción</span>
+            <span class="hero__stats-row-val"><em>100</em>%</span>
+          </div>
+          <div class="hero__stats-bar">
+            <div class="hero__stats-bar-fill" style="--w: 100%"></div>
+          </div>
+        </div>
+        <div class="hero__stats-row">
+          <div class="hero__stats-row-header">
+            <span class="hero__stats-row-label">On-time delivery</span>
+            <span class="hero__stats-row-val"><em>95</em>%</span>
+          </div>
+          <div class="hero__stats-bar">
+            <div class="hero__stats-bar-fill" style="--w: 95%"></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<script>
+  function addTilt(id: string, rx = 12, ry = 10) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    let rafId: number | null = null;
+    let isHovered = false;
+
+    el.addEventListener('mouseenter', () => { isHovered = true; });
+
+    el.addEventListener('mousemove', (e: MouseEvent) => {
+      if (rafId) return;
+
+      rafId = requestAnimationFrame(() => {
+        if (!isHovered) return;
+        const rect = el.getBoundingClientRect();
+        const x    = (e.clientX - rect.left)  / rect.width  - 0.5;
+        const y    = (e.clientY - rect.top)   / rect.height - 0.5;
+
+        el.style.transition = 'none';
+        el.style.transform  =
+          `perspective(800px) rotateY(${x * rx}deg) rotateX(${-y * ry}deg) translateZ(8px)`;
+
+        rafId = null;
+      });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      isHovered = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      el.style.transition = 'transform 0.6s cubic-bezier(.34,1.56,.64,1)';
+      el.style.transform  = '';
+    });
+  }
+
+  addTilt('hero-tilt',  12, 10);
+  addTilt('stats-tilt', 10,  8);
+</script>

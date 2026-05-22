@@ -1,0 +1,35 @@
+---
+import About from '../components/about/About.astro';
+import Background from '../components/background/Background.astro';
+import Contact from '../components/contact/Contact.astro';
+import Hero from '../components/hero/Hero.astro';
+import Navbar from '../components/navbar/Navbar.astro';
+import Process from '../components/process/Process.astro';
+import Social from '../components/social/Social.astro';
+import Work from '../components/work/Work.astro';
+import BaseLayout   from '../layouts/BaseLayout.astro';
+---
+<BaseLayout>
+  <Background />
+  <div class="page-wrapper">c
+    <Navbar />
+    <main>
+      <Hero />
+      <About />
+      <Work />
+      <Process />
+      <Social />
+      <Contact />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+</style>

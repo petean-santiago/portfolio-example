@@ -1,0 +1,156 @@
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  padding-bottom: 48px;
+}
+
+/* ── Email CTA ── */
+.contact__main {
+  background: var(--color-yellow);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 190px;
+  cursor: pointer;
+  will-change: transform;
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease;
+}
+.contact__main:hover {
+  transform: translateY(-6px) rotate(-0.4deg);
+  box-shadow: 0 22px 44px rgba(255, 181, 71, 0.38);
+}
+
+.contact__eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(26, 26, 26, 0.5);
+  margin-bottom: 10px;
+}
+.contact__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+}
+.contact__title em {
+  font-style: italic;
+  color: #fff;
+}
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-text);
+  color: var(--color-yellow);
+  font-size: 12px;
+  padding: 11px 20px;
+  border-radius: 24px;
+  width: fit-content;
+  margin-top: 20px;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.contact__email:hover {
+  opacity: 0.8;
+}
+
+/* ── Social grid 2x2 ── */
+.contact__socials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+}
+
+.contact__social {
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  will-change: transform;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+
+/* Variantes de color */
+.contact__social--dark {
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(4px);
+}
+.contact__social--dark:hover {
+  transform: translateY(-5px) rotate(-0.5deg);
+  box-shadow: 0 16px 32px rgba(26, 26, 26, 0.25);
+}
+
+.contact__social--navy {
+  background: rgba(45, 45, 94, 0.93);
+  backdrop-filter: blur(4px);
+}
+.contact__social--navy:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(45, 45, 94, 0.35);
+}
+
+.contact__social--red {
+  background: rgba(255, 107, 107, 0.93);
+  backdrop-filter: blur(4px);
+}
+.contact__social--red:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(255, 107, 107, 0.35);
+}
+
+/* La segunda dark card rota al otro lado */
+.contact__social--dark:nth-of-type(2):hover {
+  transform: translateY(-5px) rotate(0.5deg);
+}
+
+.contact__social-label {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+.contact__social-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  color: #fff;
+  margin-top: 6px;
+  letter-spacing: -0.02em;
+}
+.contact__social-arrow {
+  align-self: flex-end;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 12px;
+  display: block;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.2s ease;
+}
+.contact__social:hover .contact__social-arrow {
+  transform: translate(3px, -3px);
+  color: #fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+  .contact__socials {
+    grid-template-columns: 1fr 1fr;
+  }
+}

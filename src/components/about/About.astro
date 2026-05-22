@@ -1,0 +1,59 @@
+---
+import './about.css';
+
+const skills = [
+  { label: 'Figma',          active: true  },
+  { label: 'Design Systems', active: true  },
+  { label: 'Prototyping',    active: false },
+  { label: 'Strategy',       active: true  },
+  { label: 'User Research',  active: false },
+  { label: 'Tokens',         active: false },
+  { label: 'A/B Testing',    active: false },
+  { label: 'Interaction',    active: true  },
+];
+---
+<section class="about" id="about">
+  <p class="section-label">Sobre mí</p>
+  <div class="about__grid">
+
+    <!-- Bio -->
+    <article class="about__card about__card--bio">
+      <div>
+        <p class="about__eyebrow">Quién soy</p>
+        <p class="about__text">
+          Diseñador con foco en <strong>sistemas de diseño</strong>,
+          <strong>productos SaaS</strong> y experiencias mobile. Trabajo en la
+          intersección entre negocio, tecnología y usuario final.
+        </p>
+      </div>
+      <div class="about__chips">
+        <span class="about__chip">Turin, IT</span>
+        <span class="about__chip">Remoto</span>
+        <span class="about__chip">EN · ES · IT</span>
+      </div>
+    </article>
+
+    <!-- Skills -->
+    <article class="about__card about__card--skills">
+      <h2 class="about__skills-title">Stack &<br/>habilidades</h2>
+      <div class="about__pills">
+        {skills.map(s => (
+          <span class:list={['about__pill', { 'about__pill--active': s.active }]}>
+            {s.label}
+          </span>
+        ))}
+      </div>
+    </article>
+
+    <!-- Disponibilidad -->
+    <article class="about__card about__card--avail">
+      <span class="about__avail-dot" aria-hidden="true"></span>
+      <div>
+        <h2 class="about__avail-title">Disponible<br/>para proyectos</h2>
+        <p class="about__avail-sub">Freelance & tiempo completo</p>
+      </div>
+      <a href="#contact" class="about__avail-cta">Hablemos</a>
+    </article>
+
+  </div>
+</section>

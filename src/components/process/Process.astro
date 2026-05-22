@@ -1,0 +1,40 @@
+---
+import './process.css';
+
+const steps = [
+  { num: '01', label: 'Discover &\nResearch'  },
+  { num: '02', label: 'Define &\nStrategy'    },
+  { num: '03', label: 'Design &\nPrototype'   },
+  { num: '04', label: 'Test &\nIterate'       },
+];
+---
+<section class="process" id="process">
+  <p class="section-label">Proceso & contacto</p>
+  <div class="process__grid">
+
+    <!-- Proceso -->
+    <article class="process__card process__card--steps">
+      <h2 class="process__title">Cómo trabajo</h2>
+      <div class="process__steps">
+        {steps.map(s => (
+          <div class="process__step">
+            <span class="process__step-num">{s.num}</span>
+            <span class="process__step-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <article class="process__card process__card--cta" id="contact">
+      <div>
+        <p class="process__cta-label">¿Tienes una idea?</p>
+        <p class="process__cta-text">Hagámosla <em>real.</em></p>
+      </div>
+      <a href="mailto:hola@tudominio.com" class="process__cta-arrow" aria-label="Enviar email">
+        ↗
+      </a>
+    </article>
+
+  </div>
+</section>

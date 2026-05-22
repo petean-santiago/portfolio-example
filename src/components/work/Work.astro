@@ -1,0 +1,104 @@
+---
+import './work.css';
+
+const projects = [
+  {
+    id:     '01',
+    tag:    'SaaS · Product Design · 2024',
+    title:  'Dashboard Redesign',
+    desc:   'Rediseño completo de la UI para una plataforma B2B con +50k usuarios activos.',
+    color:  'linear-gradient(135deg, #1a2a1a, #2d4a1e)',
+    accent: '#C8F53E',
+    href:   '#',
+  },
+  {
+    id:     '02',
+    tag:    'Mobile · iOS & Android · 2024',
+    title:  'App de Finanzas',
+    desc:   'App nativa con sistema de design tokens y accesibilidad WCAG AA completa.',
+    color:  'linear-gradient(135deg, #1a1a2e, #2d1a4e)',
+    accent: '#B088FF',
+    href:   '#',
+  },
+  {
+    id:     '03',
+    tag:    'E-commerce · Design System · 2023',
+    title:  'Fashion Platform',
+    desc:   'Sistema de diseño con 60+ componentes para plataforma de moda europea.',
+    color:  'linear-gradient(135deg, #2a1a18, #4a2218)',
+    accent: '#FF8A65',
+    href:   '#',
+  },
+];
+---
+<section class="work" id="work">
+  <p class="section-label">Proyectos seleccionados</p>
+  <div class="work__grid">
+    {projects.map(p => (
+      <a href={p.href} class="work__card">
+        <div class="work__inner">
+          <div class="work__thumb" style={`background: ${p.color}`}>
+            <span class="work__case" style={`color: ${p.accent}`}>
+              Case study {p.id}
+            </span>
+            <div
+              class="work__arrow"
+              style={`color: ${p.accent}; border-color: ${p.accent}`}
+            >↗</div>
+          </div>
+          <div class="work__meta">
+            <span class="work__tag">{p.tag}</span>
+            <h3 class="work__name">{p.title}</h3>
+            <p class="work__desc">{p.desc}</p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.work__card').forEach(card => {
+    const inner = card.querySelector<HTMLElement>('.work__inner');
+    if (!inner) return;
+
+    let rafId: number | null = null;
+    let isHovered = false;
+
+    card.addEventListener('mousemove', (e: MouseEvent) => {
+      if (rafId) return; // throttle — espera al próximo frame
+
+      rafId = requestAnimationFrame(() => {
+        if (!isHovered) return;
+        const rect = card.getBoundingClientRect();
+        const x    = (e.clientX - rect.left)  / rect.width  - 0.5;
+        const y    = (e.clientY - rect.top)   / rect.height - 0.5;
+
+        inner.style.transition = 'none'; // sin transición durante movimiento
+        inner.style.transform  =
+          `perspective(800px) rotateY(${x * 12}deg) rotateX(${-y * 9}deg) translateY(-5px)`;
+        inner.style.boxShadow  =
+          `${-x * 18}px ${(-y * 18) + 18}px 36px rgba(0,0,0,0.15)`;
+
+        rafId = null;
+      });
+    });
+
+    card.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      isHovered = false;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      // transición suave de vuelta
+      inner.style.transition =
+        'transform 0.55s cubic-bezier(.34,1.56,.64,1), box-shadow 0.55s ease';
+      inner.style.transform  = '';
+      inner.style.boxShadow  = '';
+    });
+  });
+</script>

@@ -1,0 +1,45 @@
+---
+import './social.css';
+
+const testimonial = {
+  quote:  'Su capacidad para traducir requerimientos de negocio en interfaces intuitivas es excepcional. Entregó el proyecto en tiempo y elevó el estándar de todo el equipo.',
+  initials: 'MR',
+  name:   'María Rodríguez',
+  role:   'CPO · Startup Fintech, Madrid',
+};
+
+const clients = [
+  'Empresa A', 'Empresa B', 'Empresa C',
+  'Empresa D', 'Empresa E', 'Empresa F',
+];
+---
+<section class="social" id="social">
+  <p class="section-label">Clientes & testimonios</p>
+  <div class="social__grid">
+
+    <!-- Testimonial -->
+    <article class="social__card social__card--testimonial">
+      <blockquote class="social__quote">
+        {testimonial.quote}
+      </blockquote>
+      <div class="social__author">
+        <div class="social__avatar">{testimonial.initials}</div>
+        <div>
+          <p class="social__name">{testimonial.name}</p>
+          <p class="social__role">{testimonial.role}</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Clients -->
+    <article class="social__card social__card--clients">
+      <h2 class="social__clients-title">Empresas con las<br/>que colaboré</h2>
+      <div class="social__clients-grid">
+        {clients.map(c => (
+          <div class="social__client-pill">{c}</div>
+        ))}
+      </div>
+    </article>
+
+  </div>
+</section>
